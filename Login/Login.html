@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="\assets\css\style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+        <title>TG_Prime</title>
+    </head>
+
+    <body>
+        <div class="container-form sign-up">
+            <div class="welcome-back">
+                <div class="message">
+                    <h2>Bienvenido al Sistema gestión Usa</h2>
+                    <p>Si ya tienes una cuenta por favor iniciar sesión aqui</p>
+                    <button class="sign-up-btn">Iniciar Sesión</button>
+                </div>
+            </div>
+            <form action="php\RegistroUsuario.php.php" method="post" class="formulario">
+                <h2 class="create-account">Crear una cuenta</h2>
+                <input type="text" placeholder="Nombre completo" name="NombreC">
+                <input type="email" placeholder="Correo USA" name="CorreoUSA">
+                <input type="email" placeholder="Correo Alterno"name="CorreoA">
+                <input type="tel" placeholder="Numero Telefono"name="telefono">
+                <input type="text" placeholder="Programa"name="programa">
+                <input type="password" placeholder="Contraseña"name="contrasena">
+                <input type="button" value="Registrarse"name="Registrar">
+            </form>
+        </div>
+        <div class="container-form sign-in">
+            <form class="formulario" id="loginForm">
+                <h2 class="create-account">Iniciar Sesion</h2>
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Contraseña">
+                <input type="button" id="submit" value="Iniciar Sesion">
+            </form>
+
+            <div class="welcome-back">
+                <div class="message">
+                    <h2>Bienvenido de nuevo</h2>
+                    <p>Si aun no tienes una cuenta por favor registrese aqui</p>
+                    <button class="sign-in-btn">Registrarse</button>
+                </div>
+            </div>
+        </div>
+        <script src="\assets\js\script.js"></script>
+        <script src="\assets\js\login.js"></script>
+    </body>
+
+</html>
