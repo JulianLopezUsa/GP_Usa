@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TG_Prime</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css') }}">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+<!-- iCheck -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+<!-- JQVMap -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/jqvmap/jqvmap.min.css') }}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/dist/css/adminlte.min.css') }}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css') }}">
+<!-- summernote -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css') }}">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/admin" class="nav-link">Inicio</a> 
+      </li>
+    
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="static\assets\img/persona.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="static\assets\img/persona.png" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="static\assets\img/persona.png" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/admin" class="brand-link">
+      <img src="static\assets\img/primeblanco.png" alt="AdminLTE Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">TG_Prime</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="static\assets\img/persona.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ session['user_name'] }}</a>
+      </div>
+      
+      </div>
+
+     
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              
+              <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Trabajo
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/cargarT" class="nav-link">
+                  <i class="bi bi-upload"></i>
+                  <p>Cargar trabajo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/modificarT" class="nav-link">
+                  <i class="bi bi-pencil"></i>
+                  <p>Modificar entrega</p>
+                </a>
+              </li><li class="nav-item">
+                <a href="/eliminarT" class="nav-link">
+                  <i class="bi bi-trash"></i>
+                  <p>Eliminar entrega</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Proceso
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/charts/chartjs.html" class="nav-link">
+                  <i class="bi bi-card-checklist"></i>
+                  <p>Estado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Tablas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/tables/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Tables</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/tables/data.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>DataTables</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/tables/jsgrid.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>jsGrid</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        
+          <li class="nav-header">CONFIGURACION</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-gear"></i>
+              <p>
+                Opciones
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/InformacionU" class="nav-link">
+                  <i class="bi bi-person-vcard"></i>
+                  <p>Informacion</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/ActualizarD" class="nav-link">
+                  <i class="bi bi-list-check"></i>
+                  <p>Actualizar Datos</p>
+                </a>
+                <li class="nav-item">
+                <a href="/CambioClave" class="nav-link">
+                  <i class="bi bi-key"></i>
+                  <p>Cambio de contraseña</p>
+                </a>
+            </ul>
+          </li>
+          {% if session['id_rol'] == 1 or session['id_rol'] == 2 or session['id_rol'] == 6 %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-robot"></i>
+              <p>
+                Admin
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/lista" class="nav-link">
+                  <i class="bi bi-people-fill"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/registro" class="nav-link">
+                  <i class="bi bi-person-fill-add"></i>
+                  <p>Crear usuario</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+          {% if session['id_rol'] == 1 or session['id_rol'] == 2 or session['id_rol'] == 4 %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-person-fill"></i>
+              <p>
+                Tutor
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/lista" class="nav-link">
+                  <i class="bi bi-people-fill"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/registro" class="nav-link">
+                  <i class="bi bi-person-fill-add"></i>
+                  <p>Crear usuario</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+          {% if session['id_rol'] == 1 or session['id_rol'] == 2%}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-r-circle"></i>
+              <p>
+                Director
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/listaTrabajos" class="nav-link">
+                  <i class="bi bi-people-fill"></i>
+                  <p>Trabajos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/registro" class="nav-link">
+                  <i class="bi bi-person-fill-add"></i>
+                  <p>Tutores</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-question-lg"></i>
+              <p>
+                Necesitas Ayuda
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="bi bi-info-circle"></i>
+                  <p>Información</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/contacto" class="nav-link">
+                  <i class="bi bi-telephone-forward"></i>
+                  <p>Contactos</p>
+                </a>
+              
+            </ul>
+          </li>
+        </li><li class="nav-item">
+          <a href="/logout" class="nav-link">
+            <i class="bi bi-door-closed"></i>
+            <p>Cerrar Sesión</p>
+          </a>
+        </li>
+        
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  
+
+</div>
+
+
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/jquery/jquery.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- ChartJS -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js') }}"></script>
+<!-- Sparkline -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/sparklines/sparkline.js') }}"></script>
+<!-- JQVMap -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+<!-- daterangepicker -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- overlayScrollbars -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/dist/js/adminlte.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ url_for('static', filename='assets/AdminLTE-3.2.0/dist/js/pages/dashboard.js') }}"></script>
+
+</body>
+</html>
