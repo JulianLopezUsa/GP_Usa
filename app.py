@@ -314,7 +314,18 @@ def listaTutor():
 def contacto():
     return render_template('ayuda/contacto.html')
 
+#------------------------- TUTOR --------------------------------
+
+@app.route('/listaTutorias')
+def listaTutorias():
+    return render_template('tutor/tutoria.html')
+
+
+
+
 
 if __name__ == '__main__':
     app.secret_key = "julian"
     app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
+
+
