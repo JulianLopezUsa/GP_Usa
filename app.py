@@ -288,9 +288,18 @@ def CambioClave():
 # ---------------Director---------------------
 
 
-@app.route('/listaTrabajos')
-def listaTrabajos():
-    return render_template('director/asignarTutor.html')
+@app.route('/lista_trabajos')
+def lista_trabajos():
+    # Realiza una consulta SQL para obtener los registros de trabajos
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM trabajos")
+    trabajos = cur.fetchall()
+    
+    # Cierra la conexión a la base de datos
+    cur.close()
+
+    # Pasa los resultados a la plantilla HTML
+    return render_template('director/listaTrabajos.html', trabajos=trabajos)
 
 
 @app.route('/listaTutor', methods=["GET", "POST"])

@@ -1,0 +1,63 @@
+{% include 'menu.html' %}
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous">
+
+<!-- tabla_trabajos.html -->
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <h1>Lista de Trabajos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID Estudiante</th>
+                <th>Nombre Trabajo</th>
+                <th>ID Programa</th>
+                <th>Tipo de Trabajo</th>
+                <!-- Agrega más encabezados según tu estructura de SQL -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for trabajo in trabajos %}
+                <tr>
+                    <td>{{ trabajo[0] }}</td>
+                    <td>{{ trabajo[1] }}</td>
+                    <td>{{ trabajo[2] }}</td>
+                    <td>{{ trabajo[3] }}</td>
+                    <td>{{ trabajo[4] }}</td>
+                    <!-- Agrega más celdas según tu estructura de SQL -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </div>
+</div>
+
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+                <!-- /.container-fluid -->
+            </div>
+        </div>
