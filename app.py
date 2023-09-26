@@ -38,13 +38,14 @@ def login():
 
         cur = mysql.connection.cursor()
         cur.execute(
-            'SELECT ID, Nombre, Apellido, id_rol FROM tb_usuarios WHERE Email_Usa = %s AND Contrasena = %s', (_correo, _clave,))
+            'SELECT ID, Nombre, Apellido,id_Programa, id_rol FROM tb_usuarios WHERE Email_Usa = %s AND Contrasena = %s', (_correo, _clave,))
         account = cur.fetchone()
 
         if account:
             session['logeado'] = True
             session['ID'] = account['ID']
             session['id_rol'] = account['id_rol']
+            session['id_Programa'] = account['id_Programa']
             session['user_name'] = f"{account['Nombre']} {account['Apellido']}"
 
             if session['id_rol'] == 1:
@@ -208,21 +209,20 @@ def lista():
 
 
 # ------------------------- Cargar Trabajos ------------------------------------------
-
-
 @app.route('/cargarT')
 def cargarT():
     return render_template('trabajo/CargarT.html')
 
-
-app.config['UPLOAD_FOLDER'] = os.path.abspath('static\\assets\\pdf')
-
+app.config['UPLOAD_FOLDER'] = os.path.abspath('GP_Usa\\static\\assets\\pdf')
 
 @app.route('/crear_trabajo', methods=['POST'])
 def crear_trabajo():
+    
     nombre_trabajo = request.form['NombreTrabajo']
     tipo_trabajo = request.form['TipoTrabajo']
+    observacion = request.form['Observaciones']
     id_usuario = session['ID']
+    id_programa = session['id_Programa']  # Obtén el ID del programa del estudiante
     cur = mysql.connection.cursor()
 
     # Verifica si se ha enviado un archivo PDF
@@ -238,14 +238,13 @@ def crear_trabajo():
 
             # Intenta insertar el trabajo en la base de datos
             try:
-                sql = "INSERT INTO trabajos (id_estudiante, Nombre_trabajo, tipo_trabajo, adjunto, tutor1, jurado1, jurado2, jurado3) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-                val = (id_usuario, nombre_trabajo,
-                       tipo_trabajo, filename, "", "", "", "")
+                sql = "INSERT INTO trabajos (id_estudiante, id_programa, Nombre_trabajo, tipo_trabajo, adjunto, observaciones) VALUES (%s, %s, %s, %s, %s, %s)"
+                val = (id_usuario, id_programa, nombre_trabajo, tipo_trabajo, filename, observacion)
                 cur.execute(sql, val)
                 mysql.connection.commit()
                 cur.close()
 
-                return render_template('trabajo/CargarT.html', mensaje1="Se Cargo correctamente.")
+                return render_template('trabajo/CargarT.html', mensaje1="Se cargo correctamente.")
             except MySQLdb.IntegrityError as e:
                 return render_template('trabajo/CargarT.html', mensaje2="Ya existe registro.")
 
@@ -257,9 +256,48 @@ def eliminarT():
     return render_template('trabajo/EliminarT.html')
 
 
-@app.route('/modificarT')
-def modificarT():
-    return render_template('trabajo/ModificarT.html')
+@app.route('/modificar_trabajo/<int:id>', methods=['GET', 'POST'])
+def modificar_trabajo(id):
+    if request.method == 'POST':
+        # Obtén los nuevos datos del formulario de modificación.
+        nuevo_nombre_trabajo = request.form['NuevoNombreTrabajo']
+        nuevo_tipo_trabajo = request.form['NuevoTipoTrabajo']
+        nueva_observacion = request.form['NuevasObservaciones']
+
+        cur = mysql.connection.cursor()
+
+        # Verifica si se ha enviado un archivo PDF
+        if 'nuevo_pdf' in request.files:
+            nuevo_pdf = request.files['nuevo_pdf']
+
+            # Verifica si el archivo tiene una extensión válida
+            if nuevo_pdf.filename != '' and nuevo_pdf.filename.endswith('.pdf'):
+                # Genera un nombre de archivo seguro
+                nuevo_filename = secure_filename(nuevo_pdf.filename)
+                # Guarda el nuevo archivo PDF en la carpeta configurada
+                nuevo_pdf.save(os.path.join(app.config['UPLOAD_FOLDER'], nuevo_filename))
+
+                # Intenta actualizar los datos del trabajo en la base de datos
+                try:
+                    sql = "UPDATE trabajos SET Nombre_trabajo = %s, tipo_trabajo = %s, adjunto = %s, observaciones = %s WHERE id = %s"
+                    valores = (nuevo_nombre_trabajo, nuevo_tipo_trabajo, nuevo_filename, nueva_observacion, id)
+                    cur.execute(sql, valores)
+                    mysql.connection.commit()
+                    cur.close()
+
+                    return render_template('trabajo/ModificarT.html', mensaje1="Se modificó correctamente.")
+                except MySQLdb.IntegrityError as e:
+                    return render_template('trabajo/ModificarT.html', mensaje2="Error al modificar el trabajo.")
+
+
+    # Recupera los datos actuales del trabajo para mostrarlos en el formulario de modificación.
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM trabajos WHERE id = %s', (id,))
+    trabajo = cur.fetchone()
+    cur.close()
+
+    return render_template('trabajo/ModificarT.html', trabajo=trabajo)
+
 # -------------------------------------
 # ---- Nombre Usuario -----
 
@@ -290,17 +328,20 @@ def CambioClave():
 
 @app.route('/lista_trabajos')
 def lista_trabajos():
-    # Realiza una consulta SQL para obtener los registros de trabajos
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM trabajos")
-    trabajos = cur.fetchall()
     
-    # Cierra la conexión a la base de datos
+    cur = mysql.connection.cursor()
+
+    # Realiza una consulta SQL que une las tablas tb_usuarios y programas en función de id_Programa
+    cur.execute("SELECT t.id, t.Nombre_trabajo, u.Nombre, u.Apellido, u.Email_Usa, u.Email_alterno, u.Telefono, p.descripcion \
+             FROM trabajos t \
+             JOIN tb_usuarios u ON t.id_estudiante = u.ID \
+             JOIN programas p ON u.id_Programa = p.id_Programa")
+
+
+    trabajos = cur.fetchall()
     cur.close()
 
-    # Pasa los resultados a la plantilla HTML
-    return render_template('director/listaTrabajos.html', trabajos=trabajos)
-
+    return render_template('user/lista_usuarios.html', trabajos=trabajos)
 
 @app.route('/listaTutor', methods=["GET", "POST"])
 def listaTutor():
