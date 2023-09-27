@@ -4,9 +4,11 @@ from flask_mysqldb import MySQL, MySQLdb
 from werkzeug.utils import secure_filename
 import mysql.connector
 from mysql.connector import IntegrityError
+from flask_socketio import SocketIO, emit
 
 
 app = Flask(__name__, template_folder="Template", static_url_path='/static')
+socketio = SocketIO(app)
 
 # -------- Conexion a bases de datos ------------
 app.config['MYSQL_HOST'] = 'localhost'
@@ -369,6 +371,21 @@ def contacto():
 @app.route('/listaTutorias')
 def listaTutorias():
     return render_template('tutor/tutoria.html')
+
+
+#------------------chat --------------------- 
+
+@app.route('/chat')
+def chat():
+    return render_template('chat/index.html')
+
+@socketio.on('joined')
+def handle_joined(data):
+    emit('message', { 'message': 'Un usuario se ha unido al chat.' }, broadcast=True)
+
+@socketio.on('send_message')
+def handle_message(data):
+    emit('message', { 'message': data['message'] }, broadcast=True)
 
 
 
