@@ -301,7 +301,7 @@ def modificar_trabajo(id):
     return render_template('trabajo/ModificarT.html', trabajo=trabajo)
 
 # -------------------------------------
-# ---- Nombre Usuario -----
+# ------------------- Nombre Usuario --------------
 
 
 @app.route('/usuario')
