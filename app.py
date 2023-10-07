@@ -388,7 +388,11 @@ def handle_message(data):
     emit('message', { 'message': data['message'] }, broadcast=True)
 
 
+# ------------------- Jurado ---------------------
 
+@app.route('/jurado')
+def jurado():
+    return render_template('jurado/calificacion.html')
 
 
 if __name__ == '__main__':
