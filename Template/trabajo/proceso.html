@@ -1,0 +1,96 @@
+{% include 'menu.html' %}
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous">
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Item</th>
+                            <th>Progreso</th>
+                            <th style="width: 40px">%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>Cargar trabajo</td>
+                            <td>
+                                <div class="progress progress-xs">
+                                    <div
+                                        class="progress-bar progress-bar-danger"
+                                        style="width: 10%"></div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-danger">10%</span></td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>Turnitil</td>
+                            <td>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar bg-warning"
+                                        style="width: 70%"></div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-warning">70%</span></td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>Asignación de tutor</td>
+                            <td>
+                                <div
+                                    class="progress progress-xs progress-striped active">
+                                    <div class="progress-bar bg-primary"
+                                        style="width: 30%"></div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-primary">30%</span></td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>listo</td>
+                            <td>
+                                <div
+                                    class="progress progress-xs progress-striped active">
+                                    <div class="progress-bar bg-success"
+                                        style="width: 90%"></div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-success">90%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div><!-- /.container-fluid -->
+        </div>
+    </div>
+    
+<!-- Pie de página -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Información de contacto, enlaces a redes sociales, etc. -->
+            </div>
+            <div class="col-md-6 text-right">
+                <!-- Derechos de autor, enlaces a políticas de privacidad, etc. -->
+                &copy; {{ año_actual }} Tu Empresa. Todos los derechos reservados.
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+

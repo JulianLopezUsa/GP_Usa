@@ -301,6 +301,11 @@ def modificar_trabajo(id):
     return render_template('trabajo/ModificarT.html', trabajo=trabajo)
 
 # -------------------------------------
+
+
+@app.route("/proceso")
+def proceso():
+    return render_template('trabajo/proceso.html')
 # ------------------- Nombre Usuario --------------
 
 
@@ -331,19 +336,24 @@ def CambioClave():
 @app.route('/lista_trabajos')
 def lista_trabajos():
     
-    cur = mysql.connection.cursor()
+ return render_template('director/listaTrabajos.html')
 
-    # Realiza una consulta SQL que une las tablas tb_usuarios y programas en función de id_Programa
-    cur.execute("SELECT t.id, t.Nombre_trabajo, u.Nombre, u.Apellido, u.Email_Usa, u.Email_alterno, u.Telefono, p.descripcion \
-             FROM trabajos t \
-             JOIN tb_usuarios u ON t.id_estudiante = u.ID \
-             JOIN programas p ON u.id_Programa = p.id_Programa")
+# @app.route('/lista_trabajos')
+# def lista_trabajos():
+    
+#     cur = mysql.connection.cursor()
+
+#     # Realiza una consulta SQL que une las tablas tb_usuarios y programas en función de id_Programa
+#     cur.execute("SELECT t.id, t.Nombre_trabajo, u.Nombre, u.Apellido, u.Email_Usa, u.Email_alterno, u.Telefono, p.descripcion \
+#              FROM trabajos t \
+#              JOIN tb_usuarios u ON t.id_estudiante = u.ID \
+#              JOIN programas p ON u.id_Programa = p.id_Programa")
 
 
-    trabajos = cur.fetchall()
-    cur.close()
+#     trabajos = cur.fetchall()
+#     cur.close()
 
-    return render_template('user/lista_usuarios.html', trabajos=trabajos)
+    # return render_template('user/lista_usuarios.html', trabajos=trabajos)
 
 @app.route('/listaTutor', methods=["GET", "POST"])
 def listaTutor():
